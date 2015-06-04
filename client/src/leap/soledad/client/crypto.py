@@ -160,6 +160,7 @@ def doc_mac_key(doc_id, secret):
 
 
 class SoledadCrypto(object):
+
     """
     General cryptographic functionality encapsulated in a
     object that can be passed along.
@@ -173,12 +174,15 @@ class SoledadCrypto(object):
         """
         self._soledad = soledad
 
-    def encrypt_sym(self, data, key,
-                    method=crypto.EncryptionMethods.AES_256_CTR):
+    def encrypt_sym(self, data, key, method=None):
+        if method is None:
+            method = crypto.EncryptionMethods.AES_256_CTR
+
         return encrypt_sym(data, key, method)
 
-    def decrypt_sym(self, data, key,
-                    method=crypto.EncryptionMethods.AES_256_CTR, **kwargs):
+    def decrypt_sym(self, data, key, method=None, **kwargs):
+        if method is None:
+            method = crypto.EncryptionMethods.AES_256_CTR
         return decrypt_sym(data, key, method, **kwargs)
 
     def doc_mac_key(self, doc_id, secret):
