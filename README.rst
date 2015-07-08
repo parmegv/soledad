@@ -1,4 +1,4 @@
-Soledad 
+Soledad
 ==================================================================
 *Synchronization Of Locally Encrypted Data Among Devices*
 
