@@ -122,17 +122,14 @@ class InterruptableSyncTestCase(
         # sync with server
         d.addCallback(_create_docs)
         d.addCallback(lambda _: sol.get_all_docs())
-        d.addCallback(lambda results: self.assertEqual(number_of_docs,
-                                                       len(results[1])))
+        d.addCallback(lambda results: self.assertEqual(number_of_docs, len(results[1])))
         d.addCallback(lambda _: sol.sync())
         d.addCallback(lambda _: t.join())
         d.addCallback(lambda _: db.get_all_docs())
-        d.addCallback(lambda results:
-                      self.assertNotEqual(number_of_docs, len(results[1])))
+        d.addCallback(lambda results: self.assertNotEqual(number_of_docs, len(results[1])))
         d.addCallback(lambda _: sol.sync())
         d.addCallback(lambda _: db.get_all_docs())
-        d.addCallback(lambda results: self.assertEqual(number_of_docs,
-                                                       len(results[1])))
+        d.addCallback(lambda results: self.assertEqual(number_of_docs, len(results[1])))
 
         def _tear_down(results):
             db.delete_database()
@@ -174,6 +171,8 @@ class TestSoledadDbSync(
         """
         Need to explicitely invoke inicialization on all bases.
         """
+        #tests.TestCaseWithServer.setUp(self)
+        #self.main_test_class = test_sync.TestDbSync
         SoledadWithCouchServerMixin.setUp(self)
         self.startServer()
         self.db = self.make_database_for_test(self, 'test1')
@@ -189,6 +188,7 @@ class TestSoledadDbSync(
         """
         self.db2.delete_database()
         SoledadWithCouchServerMixin.tearDown(self)
+        #tests.TestCaseWithServer.tearDown(self)
 
     def do_sync(self, target_name):
         """
