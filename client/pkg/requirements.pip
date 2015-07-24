@@ -1,13 +1,7 @@
+-e .
 pysqlcipher>2.6.3
-simplejson
-u1db
-scrypt
-pycryptopp
-cchardet
-zope.proxy
-twisted
 
-# XXX -- fix me!
-# oauth is not strictly needed by us, but we need it until u1db adds it to its
-# release as a dep.
-oauth
+--allow-external u1db
+--allow-unverified u1db
+--allow-external dirspec
+--allow-unverified dirspec

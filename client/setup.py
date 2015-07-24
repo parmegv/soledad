@@ -147,6 +147,16 @@ setup(
     namespace_packages=["leap", "leap.soledad"],
     packages=find_packages('src'),
     package_dir={'': 'src'},
-    install_requires=requirements,
+    install_requires={
+        "pysqlcipher",
+        "simplejson",
+        "u1db",
+        "scrypt",
+        "pycryptopp",
+        "cchardet",
+        "zope.proxy",
+        "twisted",
+        "oauth"
+    },
     extras_require={'signaling': ['leap.common>=0.3.0']},
 )
